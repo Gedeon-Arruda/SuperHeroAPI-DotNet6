@@ -50,7 +50,7 @@ namespace SuperHeroAPI.Controllers
 
             dbHero.Name = request.Name;
             dbHero.FirstName = request.FirstName;
-            dbHero.lastName = request.lastName;
+            dbHero.LastName = request.LastName;
             dbHero.Place = request.Place;
 
             await _context.SaveChangesAsync();
@@ -62,8 +62,11 @@ namespace SuperHeroAPI.Controllers
         public async Task<ActionResult<SuperHero>> Delete(int id)
         {
             var dbHero = await _context.SuperHeroes.FindAsync(id);
+
             if (dbHero == null)
+            {
                 return BadRequest("Hero not found.");
+            }
 
             _context.SuperHeroes.Remove(dbHero);
             await _context.SaveChangesAsync();
