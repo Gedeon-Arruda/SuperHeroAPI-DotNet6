@@ -9,4 +9,3 @@
         public string Place { get; set; } = string.Empty;
     }
 }
-

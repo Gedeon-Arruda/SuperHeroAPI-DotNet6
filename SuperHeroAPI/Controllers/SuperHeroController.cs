@@ -62,8 +62,11 @@ namespace SuperHeroAPI.Controllers
         public async Task<ActionResult<SuperHero>> Delete(int id)
         {
             var dbHero = await _context.SuperHeroes.FindAsync(id);
+
             if (dbHero == null)
+            {
                 return BadRequest("Hero not found.");
+            }
 
             _context.SuperHeroes.Remove(dbHero);
             await _context.SaveChangesAsync();
